@@ -1,12 +1,11 @@
 import { Injectable } from "@angular/core";
+import { SquareComponent } from "../square/square.component";
 
 @Injectable({
     providedIn: 'root'
 })
 export class GridManager {
-    constructor(){
 
-    }
     private data: number[] = [  0,0,0,
                                 0,0,0,
                                 0,0,0   ];
@@ -22,9 +21,11 @@ export class GridManager {
     public getGrid():number[]{
         return this.data;
     }
+
     public setSquare(index:number,value : "o" | "x"):void{
         this.data[index] = (value == "o") ? 1 : 2 ;
     }
+
     public getSquare(index:number): "o" | "x" | null{
         if (this.data[index] == 1) return 'o';
         if (this.data[index] == 2) return 'x';

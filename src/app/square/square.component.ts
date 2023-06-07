@@ -1,4 +1,4 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { GridManager } from '../services/grid-manager.service';
 import { GridComponent } from '../grid/grid.component';
@@ -9,14 +9,13 @@ import { AppRoutingModule } from '../app-routing.module';
   templateUrl: './square.component.html',
   styleUrls: ['./square.component.scss']
 })
-export class SquareComponent  {
+export class SquareComponent{
   @Input() index!:number;
   @Input() state!: null | 'x' | 'o';
 
   constructor(private gridMan:GridManager,
     private Grid:GridComponent,
     private router:Router){
-
   }
 
   play(){
@@ -25,6 +24,7 @@ export class SquareComponent  {
       this.Grid.ngOnInit();
       this.router.navigateByUrl("/game");
     }
-    this.state = this.gridMan.getSquare(this.index);
+    this.Grid.stateList[this.index] = this.gridMan.getSquare(this.index);
+    this.state = this.Grid.stateList[this.index];
   }
 }
